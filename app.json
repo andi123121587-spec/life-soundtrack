@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "UI/pages/index/index",
+    "UI/pages/me/me",
+    "UI/pages/compose/compose",
+    "UI/pages/diary/diary",
+    "UI/pages/music/music"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FBF3E5",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "情绪音乐日记",
+    "backgroundColor": "#FBF3E5"
+  },
+  "usingComponents": {
+    "page-title": "/UI/components/page-title/page-title",
+    "mood-selector": "/UI/components/mood-selector/mood-selector",
+    "bottom-nav": "/UI/components/bottom-nav/bottom-nav"
+  },
+  "sitemapLocation": "sitemap.json"
+}

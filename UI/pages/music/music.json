@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "page-title": "/UI/components/page-title/page-title",
+    "mood-selector": "/UI/components/mood-selector/mood-selector",
+    "bottom-nav": "/UI/components/bottom-nav/bottom-nav",
+    "song-adjust-panel": "/UI/components/song-adjust-panel/song-adjust-panel",
+    "lyric-rewrite-panel": "/UI/components/lyric-rewrite-panel/lyric-rewrite-panel"
+  }
+}

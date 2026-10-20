@@ -1,0 +1,8 @@
+{
+  "name": "life-soundtrack-miniapp",
+  "private": true,
+  "scripts": {
+    "test": "node --test Tests/*.test.js",
+    "check": "node scripts/check-project.js"
+  }
+}

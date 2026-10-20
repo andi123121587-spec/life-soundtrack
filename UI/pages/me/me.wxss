@@ -1,0 +1,135 @@
+.library-page { padding-left: 30rpx; padding-right: 30rpx; }
+
+.library-top {
+  margin-top: 18rpx;
+  height: 250rpx;
+  padding: 34rpx 36rpx 26rpx;
+  border: 1.5rpx solid #ddb89f;
+  border-radius: 48rpx;
+  background: #fef7eb;
+}
+
+.library-top__title { display: block; color: #575559; font-size: 24rpx; font-weight: 700; }
+.library-top__head { display: flex; align-items: center; justify-content: space-between; gap: 12rpx; }
+.library-legend { display: flex; align-items: center; gap: 10rpx; }
+.library-legend__item { display: flex; align-items: center; gap: 4rpx; color: #9a7b69; font-size: 14rpx; white-space: nowrap; }
+.library-legend__item view { width: 7rpx; height: 7rpx; border-radius: 50%; }
+
+.library-bars {
+  height: 154rpx;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14rpx;
+  padding-top: 22rpx;
+}
+
+.library-bar { width: 72rpx; display: flex; flex-direction: column; align-items: center; gap: 12rpx; }
+.library-bar__fill { width: 100%; min-height: 12rpx; border-radius: 10rpx 10rpx 4rpx 4rpx; opacity: .78; }
+.library-bar__day { color: #8f7665; font-size: 20rpx; }
+.library-rule { margin: 34rpx 0 28rpx; }
+
+.generation-card {
+  margin-top: 22rpx;
+  padding: 26rpx 30rpx 30rpx;
+  border: 1.5rpx solid #c98659;
+  border-radius: 42rpx;
+  background: linear-gradient(180deg, #fff7e9 0%, #fbe6c4 100%);
+  box-shadow: 0 16rpx 34rpx rgba(78,53,36,.08);
+}
+
+.generation-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.generation-card__title {
+  min-width: 0;
+  color: #4e3524;
+  font-size: 30rpx;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.generation-card__status {
+  flex: none;
+  padding: 0 16rpx;
+  height: 38rpx;
+  border-radius: 999rpx;
+  display: grid;
+  place-items: center;
+  background: #c98659;
+  color: #fef7eb;
+  font-size: 20rpx;
+}
+
+.generation-card__sub {
+  display: block;
+  margin-top: 14rpx;
+  color: #a56c49;
+  font-size: 22rpx;
+  line-height: 1.55;
+}
+
+.generation-card__progress {
+  height: 12rpx;
+  margin-top: 20rpx;
+  border-radius: 999rpx;
+  overflow: hidden;
+  background: rgba(201, 134, 89, .18);
+}
+
+.generation-card__fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #c98659 0%, #f0b676 100%);
+}
+
+.generation-card__action {
+  width: 210rpx;
+  height: 54rpx;
+  margin-top: 20rpx;
+  border-radius: 999rpx;
+  display: grid;
+  place-items: center;
+  background: #4e3524;
+  color: #fef7eb;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.library-filters { margin: 0 -30rpx; padding-left: 30rpx; white-space: nowrap; }
+.library-filters__row { display: inline-flex; gap: 14rpx; padding-right: 30rpx; }
+.filter-pill { gap: 10rpx; }
+.filter-pill__icon { width: 32rpx; height: 32rpx; }
+.filter-pill.pill--active .filter-pill__icon { filter: brightness(0) invert(1); }
+
+.library-list { margin-top: 28rpx; display: grid; gap: 20rpx; }
+
+.library-song {
+  padding: 22rpx 30rpx 20rpx;
+  border: 1.5rpx solid #c98659;
+  border-radius: 48rpx;
+  background: #fef7eb;
+  transition: transform 120ms ease;
+}
+.library-song--pressed { transform: scale(.99); }
+.library-song--active { background: #fff4de; }
+.library-song__main { display: flex; align-items: center; gap: 18rpx; }
+.library-song__thumb { width: 96rpx; height: 96rpx; border-radius: 50%; flex: none; background: #ead8bc; }
+.library-song__copy { min-width: 0; flex: 1; }
+.library-song__title { display: block; color: #4e3524; font-size: 30rpx; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.library-song__meta { display: block; margin-top: 8rpx; color: #b88768; font-size: 22rpx; }
+.library-song__wave { width: 110rpx; height: 48rpx; display: flex; align-items: center; justify-content: center; gap: 5rpx; }
+.library-song__wavebar { width: 7rpx; border-radius: 99rpx; background: #dda47c; }
+.library-song__play { width: 64rpx; height: 64rpx; border-radius: 50%; background: #c98659; display: grid; place-items: center; flex: none; }
+.library-song__play image { width: 30rpx; height: 34rpx; }
+.library-song__divider { height: 2rpx; margin-top: 18rpx; background: #fce0ad; }
+.library-song__quote { display: block; margin-top: 16rpx; color: #4e3524; font-size: 22rpx; line-height: 1.55; }
+.library-empty { margin-top: 52rpx; padding: 60rpx 36rpx; border: 1.5rpx solid #ddb89f; border-radius: 48rpx; text-align: center; }
+.library-empty__title { display: block; color: #4e3524; font-size: 34rpx; font-weight: 700; }
+.library-empty__sub { display: block; margin: 18rpx 0 32rpx; color: #a56c49; font-size: 24rpx; line-height: 1.6; }

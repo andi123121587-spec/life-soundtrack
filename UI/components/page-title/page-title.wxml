@@ -1,0 +1,5 @@
+<view class="page-title {{dark ? 'page-title--dark' : ''}} page-title--{{align}}">
+  <text wx:if="{{eyebrow}}" class="eyebrow {{dark ? 'eyebrow--dark' : ''}}">{{eyebrow}}</text>
+  <text class="title-main">{{title}}</text>
+  <text wx:if="{{subtitle}}" class="title-sub">{{subtitle}}</text>
+</view>

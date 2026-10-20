@@ -1,0 +1,13 @@
+.sheet-mask { position: fixed; inset: 0; z-index: 80; background: rgba(78,53,36,.34); }
+.sheet { position: fixed; z-index: 90; left: 0; right: 0; bottom: 0; max-height: 84vh; overflow-y: auto; padding: 26rpx 32rpx calc(38rpx + env(safe-area-inset-bottom)); border-radius: 56rpx 56rpx 0 0; background: #fef7eb; }
+.sheet__handle { width: 152rpx; height: 14rpx; margin: 0 auto 28rpx; border-radius: 99rpx; background: #ead5c8; }
+.sheet__title { display: block; margin-bottom: 30rpx; color: #17100c; font-size: 42rpx; font-weight: 700; }
+.sheet__label { display: block; color: #e3b79e; font-size: 28rpx; font-weight: 600; }
+.sheet__origin { display: block; margin-top: 38rpx; color: #4e3524; font-size: 38rpx; font-weight: 700; }
+.sheet__sub { display: block; margin: 44rpx 0 10rpx; color: #a96f4f; font-size: 27rpx; font-weight: 600; }
+.rewrite-choice { min-height: 94rpx; margin-top: 18rpx; padding: 0 38rpx; border-radius: 48rpx; display: flex; align-items: center; background: #fce0ad; color: #4e3524; font-size: 30rpx; font-weight: 600; }
+.rewrite-choice--active { background: #c98659; color: #fef7eb; }
+.rewrite-actions { margin-top: 24rpx; display: flex; gap: 28rpx; }
+.pill { min-height: 68rpx; padding: 0 24rpx; border: 2rpx solid #966b1f; border-radius: 999rpx; display: flex; flex: 1; align-items: center; justify-content: center; gap: 12rpx; color: #966b1f; font-size: 26rpx; }
+.rewrite-actions image { width: 36rpx; height: 36rpx; }
+.sheet__apply { height: 106rpx; margin-top: 26rpx; border-radius: 54rpx; display: grid; place-items: center; background: #c98659; color: #fef7eb; font-size: 34rpx; }

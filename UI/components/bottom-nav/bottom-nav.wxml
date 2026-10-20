@@ -1,0 +1,22 @@
+<view class="bottom-nav-wrap">
+  <view class="bottom-nav bottom-nav--{{current}}">
+    <view class="bottom-nav__group">
+      <block wx:for="{{items}}" wx:key="key">
+        <view
+          class="bottom-nav__item {{current === item.key ? 'bottom-nav__item--active' : ''}}"
+          role="button"
+          aria-label="前往{{item.label}}"
+          data-url="{{item.url}}"
+          bindtap="go"
+        >
+          <image class="bottom-nav__icon" src="{{item.iconSrc}}" mode="aspectFit" />
+          <text class="bottom-nav__label">{{item.label}}</text>
+        </view>
+      </block>
+    </view>
+
+    <view class="bottom-nav__center" role="button" aria-label="{{isPlaying ? '暂停当前歌曲' : '播放当前歌曲'}}" bindtap="togglePlay" hover-class="tap-control">
+      <image class="bottom-nav__play-icon" src="{{isPlaying ? '/assets/icons/pause.svg' : '/assets/icons/play.svg'}}" mode="aspectFit" />
+    </view>
+  </view>
+</view>

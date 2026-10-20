@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.cloudbase.net/cli/cloudbaserc.schema.json",
+  "envId": "YOUR_CLOUD_ENV_ID",
+  "functionRoot": "cloudfunctions",
+  "functions": [
+    { "name": "generateMusic", "runtime": "Nodejs20.19", "handler": "index.main", "timeout": 300, "memorySize": 512 },
+    { "name": "listSongs", "runtime": "Nodejs20.19", "handler": "index.main", "timeout": 20, "memorySize": 256 },
+    { "name": "deleteSong", "runtime": "Nodejs20.19", "handler": "index.main", "timeout": 20, "memorySize": 256 },
+    { "name": "startGeneration", "runtime": "Nodejs20.19", "handler": "index.main", "timeout": 20, "memorySize": 256 },
+    { "name": "getGenerationTask", "runtime": "Nodejs20.19", "handler": "index.main", "timeout": 20, "memorySize": 256 },
+    { "name": "saveGeneratedSong", "runtime": "Nodejs20.19", "handler": "index.main", "timeout": 20, "memorySize": 256 },
+    { "name": "updateSongPrivacy", "runtime": "Nodejs20.19", "handler": "index.main", "timeout": 20, "memorySize": 256 }
+  ]
+}

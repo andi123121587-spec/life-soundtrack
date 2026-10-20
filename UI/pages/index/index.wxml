@@ -1,0 +1,62 @@
+<view class="app-page home-page">
+  <view class="home-greeting">
+    <view class="home-greeting__copy">
+      <text class="home-greeting__eyebrow">{{greeting}}</text>
+      <text class="home-greeting__name">{{userName}}</text>
+    </view>
+    <view class="home-greeting__avatar" aria-label="用户头像"></view>
+  </view>
+
+  <view class="home-hero" role="button" aria-label="开始创作情绪歌曲" bindtap="openCompose" hover-class="tap-card">
+    <text class="home-hero__eyebrow">今天，发生了</text>
+    <text class="home-hero__title">什么值得记下的？</text>
+    <view class="home-hero__line"></view>
+    <text class="home-hero__sub">写下心情，AI帮你做成一首歌</text>
+    <view class="home-hero__action">开始创作→</view>
+  </view>
+
+  <block wx:if="{{generationStatus.active}}">
+    <view class="generation-card">
+      <view class="generation-card__head">
+        <text class="generation-card__title">{{generationStatus.title}}</text>
+        <text class="generation-card__status">{{generationStatus.stage === 'loading' ? '生成中' : '已完成'}}</text>
+      </view>
+      <text class="generation-card__sub">{{generationStatus.subtitle}}</text>
+      <view class="generation-card__progress">
+        <view class="generation-card__fill" style="width: {{generationStatus.progress}}%;"></view>
+      </view>
+      <view class="generation-card__action" role="button" bindtap="continueGeneration">{{generationStatus.actionLabel}}</view>
+    </view>
+  </block>
+
+  <view class="section-rule home-rule"></view>
+
+  <scroll-view scroll-x class="home-scenes" enhanced show-scrollbar="{{false}}">
+    <view class="home-scenes__row">
+      <block wx:for="{{scenes}}" wx:key="title">
+        <view class="home-scene" role="button" aria-label="打开{{item.title}}" data-index="{{index}}" bindtap="openScene" hover-class="tap-card">
+          <image class="home-scene__image" src="{{item.image}}" mode="aspectFill" />
+          <text class="home-scene__title">‹ {{item.title}}</text>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+
+  <view class="section-rule home-rule home-rule--recent"></view>
+
+  <view class="home-recents">
+    <block wx:for="{{recentRecap}}" wx:key="title">
+      <view class="home-recent" role="button" aria-label="打开歌曲{{item.title}}" data-id="{{item.id}}" bindtap="openRecent" hover-class="tap-card">
+        <image class="home-recent__thumb" src="{{item.thumb}}" mode="aspectFill" />
+        <view class="home-recent__content">
+          <text class="home-recent__title">{{item.title}}</text>
+          <text class="home-recent__meta">{{item.meta}}</text>
+        </view>
+        <view class="home-recent__score">{{item.percent}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="bottom-safe"></view>
+  <bottom-nav current="index" />
+</view>

@@ -1,0 +1,19 @@
+.page-title {
+  display: block;
+}
+
+.page-title--center {
+  text-align: center;
+}
+
+.page-title--right {
+  text-align: right;
+}
+
+.page-title--dark .title-main {
+  color: #fff4eb;
+}
+
+.page-title--dark .title-sub {
+  color: rgba(255, 244, 235, 0.72);
+}

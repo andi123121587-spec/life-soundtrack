@@ -1,0 +1,13 @@
+<block wx:if="{{visible}}">
+  <view class="sheet-mask" bindtap="close"></view>
+  <view class="sheet">
+    <view class="sheet__handle"></view>
+    <text class="sheet__title">整句修改</text>
+    <text class="sheet__label">原句</text>
+    <text class="sheet__origin">{{original}}</text>
+    <text class="sheet__sub">选择一个版本，替换当前整句</text>
+    <block wx:for="{{alternatives}}" wx:key="*this"><view class="rewrite-choice {{currentAlternative === item ? 'rewrite-choice--active' : ''}}" bindtap="choose" data-text="{{item}}">{{item}}</view></block>
+    <view class="rewrite-actions"><view class="pill" bindtap="lock"><image src="/assets/icons/lock.svg" mode="aspectFit" />锁定原句</view><view class="pill" bindtap="edit"><image src="/assets/icons/edit.svg" mode="aspectFit" />自己改</view></view>
+    <view class="sheet__apply" bindtap="apply">用这一句</view>
+  </view>
+</block>

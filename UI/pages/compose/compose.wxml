@@ -1,0 +1,48 @@
+<view class="app-page compose-page" style="padding-top: {{navTop}}px;">
+  <view class="custom-header">
+    <view class="custom-header__side" role="button" aria-label="返回" bindtap="goBack" hover-class="tap-control"><image class="custom-header__back" src="/assets/icons/back.svg" mode="aspectFit" /></view>
+    <text class="custom-header__date">{{dateLabel}}</text>
+    <view class="custom-header__side" role="button" aria-label="创作选项" bindtap="showMenu" hover-class="tap-control"><image class="custom-header__menu" src="/assets/icons/menu.svg" mode="aspectFit" /></view>
+  </view>
+
+  <view class="compose-title">
+    <view class="compose-title__top">
+      <text class="compose-title__eyebrow">今天，发生了</text>
+      <view class="compose-title__quick {{canSubmit ? '' : 'compose-title__quick--disabled'}}" bindtap="startCreate" hover-class="tap-control">开始</view>
+    </view>
+    <text class="compose-title__main">什么值得记下的？</text>
+  </view>
+
+  <view class="compose-editor">
+    <textarea class="compose-editor__textarea" value="{{content}}" focus="{{editorFocused}}" bindinput="updateContent" maxlength="1800" cursor-spacing="180" adjust-position="{{true}}" placeholder="{{editorPlaceholder}}" placeholder-class="compose-editor__placeholder" />
+    <view class="compose-editor__privacy" role="switch" aria-checked="{{privateMode}}" aria-label="标记为私密记录" bindtap="togglePrivate" hover-class="tap-control">
+      <view class="compose-editor__switch {{privateMode ? 'compose-editor__switch--on' : ''}}"><view></view></view>
+      <text>「标记为私密记录」</text>
+    </view>
+    <view class="compose-editor__line"></view>
+  </view>
+
+  <view class="section-rule compose-rule"></view>
+  <view class="compose-moods">
+    <block wx:for="{{moods}}" wx:key="key">
+      <view class="pill compose-pill {{currentMood === item.key ? 'pill--active' : ''}}" role="button" aria-label="选择{{item.label}}情绪" data-key="{{item.key}}" bindtap="chooseMood" hover-class="tap-control">
+        <image class="compose-pill__icon" src="{{item.iconImage}}" mode="aspectFit" />
+        <text>{{item.label}}</text>
+      </view>
+    </block>
+  </view>
+
+  <view class="compose-prompts">
+    <text class="compose-prompts__title">不知从何写起？</text>
+    <view class="compose-prompts__row">
+      <block wx:for="{{prompts}}" wx:key="*this">
+        <view class="pill prompt-pill {{selectedPrompt === item ? 'pill--active' : ''}}" role="button" data-prompt="{{item}}" bindtap="choosePrompt" hover-class="tap-control">{{item}}</view>
+      </block>
+    </view>
+  </view>
+
+  <cover-view class="compose-action-dock">
+    <cover-view class="compose-action {{canSubmit ? '' : 'compose-action--disabled'}}" aria-label="开始创作" aria-disabled="{{!canSubmit}}" bindtap="startCreate">开始创作→</cover-view>
+    <cover-view class="compose-privacy-note" role="button" bindtap="showDataNotice">文字将发送至 MiniMax 并暂存为云端生成任务 · 查看数据说明</cover-view>
+  </cover-view>
+</view>

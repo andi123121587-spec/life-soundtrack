@@ -1,0 +1,6 @@
+.env
+.env.local
+.aider*
+!.aider.conf.yml
+.DS_Store
+

@@ -1,0 +1,78 @@
+<view class="app-page library-page">
+  <view class="library-top">
+    <view class="library-top__head">
+      <text class="library-top__title">近7天情绪创作频率</text>
+      <view class="library-legend">
+        <block wx:for="{{moodLegend}}" wx:key="label">
+          <view class="library-legend__item"><view style="background:{{item.color}}"></view><text>{{item.label}}</text></view>
+        </block>
+      </view>
+    </view>
+    <view class="library-bars">
+      <block wx:for="{{bars}}" wx:key="day">
+        <view class="library-bar">
+          <view class="library-bar__fill" style="height: {{item.height}}rpx; background: {{item.color}};"></view>
+          <text class="library-bar__day">{{item.day}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <block wx:if="{{generationStatus.active}}">
+    <view class="generation-card">
+      <view class="generation-card__head">
+        <text class="generation-card__title">{{generationStatus.title}}</text>
+        <text class="generation-card__status">{{generationStatus.stage === 'loading' ? '生成中' : '已完成'}}</text>
+      </view>
+      <text class="generation-card__sub">{{generationStatus.subtitle}}</text>
+      <view class="generation-card__progress">
+        <view class="generation-card__fill" style="width: {{generationStatus.progress}}%;"></view>
+      </view>
+      <view class="generation-card__action" role="button" bindtap="continueGeneration">{{generationStatus.actionLabel}}</view>
+    </view>
+  </block>
+
+  <view class="section-rule library-rule"></view>
+
+  <scroll-view scroll-x class="library-filters" enhanced show-scrollbar="{{false}}">
+    <view class="library-filters__row">
+      <block wx:for="{{filters}}" wx:key="key">
+        <view class="pill filter-pill {{currentFilter === item.key ? 'pill--active' : ''}}" role="button" aria-label="筛选{{item.label}}歌曲" data-key="{{item.key}}" bindtap="chooseFilter" hover-class="tap-control">
+          <image wx:if="{{item.iconImage}}" class="filter-pill__icon" src="{{item.iconImage}}" mode="aspectFit" />
+          <text>{{item.label}}</text>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+
+  <view class="library-list">
+    <block wx:for="{{visibleSongs}}" wx:key="id">
+      <view class="library-song {{playingSongId === item.id ? 'library-song--active' : ''}}" role="button" aria-label="打开歌曲{{item.title}}" data-id="{{item.id}}" bindtap="openSong" hover-class="library-song--pressed">
+        <view class="library-song__main">
+          <image class="library-song__thumb" src="{{item.coverImage}}" mode="aspectFill" />
+          <view class="library-song__copy">
+            <text class="library-song__title">{{item.title}}</text>
+            <text class="library-song__meta">{{item.mood}} · {{item.duration}}</text>
+          </view>
+          <view class="library-song__wave">
+            <block wx:for="{{[8,15,20,12,18,24,13,19,10]}}" wx:key="*this"><view class="library-song__wavebar" style="height: {{item}}rpx"></view></block>
+          </view>
+          <view class="library-song__play" role="button" aria-label="播放{{item.title}}" catchtap="playSong" data-id="{{item.id}}">
+            <image src="{{playingSongId === item.id ? '/assets/icons/pause.svg' : '/assets/icons/play.svg'}}" mode="aspectFit" />
+          </view>
+        </view>
+        <view class="library-song__divider"></view>
+        <text class="library-song__quote">{{item.quote}}</text>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{!visibleSongs.length}}" class="library-empty">
+    <text class="library-empty__title">这里还没有对应的歌</text>
+    <text class="library-empty__sub">记录一段心情，它会变成你的下一首歌。</text>
+    <view class="btn-secondary" role="button" bindtap="openCreate">开始创作</view>
+  </view>
+
+  <view class="bottom-safe"></view>
+  <bottom-nav current="me" />
+</view>

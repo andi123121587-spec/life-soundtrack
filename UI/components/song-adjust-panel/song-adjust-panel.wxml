@@ -1,0 +1,18 @@
+<block wx:if="{{visible}}">
+  <view class="sheet-mask" bindtap="close"></view>
+  <view class="sheet">
+    <view class="sheet__handle"></view>
+    <text class="sheet__title">细节调整</text>
+    <block wx:for="{{tweaks}}" wx:key="key">
+      <view class="tweak">
+        <text class="tweak__label">{{item.label}}</text>
+        <slider min="0" max="100" value="{{item.value}}" data-key="{{item.key}}" activeColor="#c98659" backgroundColor="#ead5c8" block-size="18" block-color="#fef7eb" bindchange="change" />
+        <view class="tweak__legend"><text>{{item.left}}</text><text>{{item.right}}</text></view>
+      </view>
+    </block>
+    <text class="sheet__section">编曲</text>
+    <view class="instrument-row"><block wx:for="{{instruments}}" wx:key="*this"><view class="pill {{currentInstrument === item ? 'pill--active' : ''}}" data-value="{{item}}" bindtap="choose">{{item}}</view></block></view>
+    <view class="sheet__preview {{playable ? '' : 'sheet__preview--disabled'}}" bindtap="preview"><image src="{{previewing ? '/assets/icons/pause.svg' : '/assets/icons/play.svg'}}" mode="aspectFit" /><text>{{previewing ? '暂停试听' : '试听变化'}}</text><view class="mini-wave"><block wx:for="{{waveBars}}" wx:key="*this"><view class="mini-wave__bar" style="height:{{item / 2}}rpx"></view></block></view></view>
+    <view class="sheet__apply" bindtap="apply">应用到这首</view>
+  </view>
+</block>

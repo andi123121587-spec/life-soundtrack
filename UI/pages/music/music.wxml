@@ -1,0 +1,78 @@
+<view class="app-page detail-page" style="padding-top: {{navTop}}px;">
+  <view class="custom-header">
+    <view class="custom-header__side" role="button" aria-label="返回" bindtap="goBack" hover-class="tap-control"><image class="custom-header__back" src="/assets/icons/back.svg" mode="aspectFit" /></view>
+    <text class="custom-header__date">{{dateLabel}}</text>
+    <view class="custom-header__side" role="button" aria-label="歌曲选项" bindtap="toggleSongMenu" hover-class="tap-control"><image class="custom-header__menu" src="/assets/icons/menu.svg" mode="aspectFit" /></view>
+  </view>
+
+  <view wx:if="{{showSongMenu}}" class="song-menu-mask" bindtap="toggleSongMenu"></view>
+  <view wx:if="{{showSongMenu}}" class="song-menu" style="top: {{songMenuTop}}px;">
+    <view role="button" bindtap="openAdjustPanel" hover-class="tap-control">细节调整</view>
+    <view role="button" bindtap="openRewritePanel" hover-class="tap-control">整句修改</view>
+    <view role="button" bindtap="regenerateSong" hover-class="tap-control">再生成一个版本</view>
+    <view role="button" bindtap="toggleSongPrivate" hover-class="tap-control">{{isPrivate ? '取消私密标记' : '标记为私密'}}</view>
+    <view role="button" bindtap="deleteSong" hover-class="tap-control">删除歌曲</view>
+  </view>
+
+  <view class="detail-head">
+    <image class="detail-head__cover" src="{{song.coverImage}}" mode="aspectFill" />
+    <view class="detail-head__copy">
+      <text class="detail-head__title">{{song.title}}</text>
+      <text class="detail-head__sub">{{song.subtitle}}</text>
+    </view>
+    <view class="detail-head__like" role="button" aria-label="{{liked ? '取消收藏' : '收藏歌曲'}}" bindtap="toggleLike" hover-class="tap-control"><image src="/assets/icons/heart.svg" mode="aspectFit" class="{{liked ? '' : 'is-unliked'}}" /></view>
+  </view>
+
+  <view class="detail-rule"></view>
+  <view class="detail-menu-hint"><text>右上角 ••• 可调整、重写、再生成、私密或删除</text></view>
+  <view class="detail-tabs">
+    <view class="pill detail-tab {{selectedTab === 'lyrics' ? 'pill--active' : ''}}" role="tab" aria-selected="{{selectedTab === 'lyrics'}}" data-tab="lyrics" bindtap="selectTab">歌词</view>
+    <view class="pill detail-tab {{selectedTab === 'diary' ? 'pill--active' : ''}}" role="tab" aria-selected="{{selectedTab === 'diary'}}" data-tab="diary" bindtap="selectTab">日记</view>
+  </view>
+
+  <block wx:if="{{selectedTab === 'lyrics'}}">
+    <scroll-view class="lyrics-list" scroll-y enhanced show-scrollbar="{{false}}">
+      <block wx:for="{{song.lyrics}}" wx:key="index">
+        <view class="lyrics-row {{index === currentLineIndex && showWarning ? 'lyrics-row--warning' : ''}}" data-index="{{index}}" bindtap="selectLyricLine">
+          <text class="lyrics-line {{index === currentLineIndex ? 'lyrics-line--active' : ''}}">{{item}}</text>
+          <image wx:if="{{index === currentLineIndex && showWarning}}" src="/assets/icons/error.svg" mode="aspectFit" />
+        </view>
+      </block>
+    </scroll-view>
+
+    <block wx:if="{{showWarning}}">
+      <view class="detail-warning">
+        <view class="detail-warning__head"><image src="/assets/icons/error.svg" mode="aspectFit" /><text>这句歌词包含敏感内容</text></view>
+        <text class="detail-warning__text">AI监测到这段日记涉及较为私密的个人信息，已对歌词做模糊处理。你可以选择修改这一句，或开启私密模式继续生成。</text>
+      </view>
+      <view class="warning-actions"><view class="pill warning-button" bindtap="enablePrivateMode">私密模式</view><view class="pill warning-button" bindtap="openRewritePanel">整句修改</view></view>
+    </block>
+
+    <block wx:else>
+      <view class="wave-row {{isPlaying ? 'wave-row--playing' : ''}}"><block wx:for="{{waveBars}}" wx:key="index"><view class="wave-bar" style="height: {{item}}rpx;"></view></block></view>
+      <slider class="timeline-slider" min="0" max="100" value="{{progress}}" activeColor="#966b1f" backgroundColor="#fce0ad" block-size="14" block-color="#966b1f" bindchanging="seek" bindchange="seek" />
+      <view class="timeline-time"><text>{{currentTime}}</text><text>{{totalTime}}</text></view>
+      <view class="player">
+        <image src="/assets/icons/shuffle.svg" mode="aspectFit" bindtap="toggleShuffle" class="{{shuffle ? '' : 'player__muted'}}" />
+        <image src="/assets/icons/previous.svg" mode="aspectFit" bindtap="previousSong" />
+        <view class="player__center {{playable ? '' : 'player__center--disabled'}}" role="button" aria-label="{{isPlaying ? '暂停' : '播放'}}" aria-disabled="{{!playable}}" bindtap="togglePlay"><image src="{{isPlaying ? '/assets/icons/pause.svg' : '/assets/icons/play.svg'}}" mode="aspectFit" /></view>
+        <image src="/assets/icons/next.svg" mode="aspectFit" bindtap="nextSong" />
+        <image src="/assets/icons/repeat.svg" mode="aspectFit" bindtap="toggleRepeat" class="{{repeat ? '' : 'player__muted'}}" />
+      </view>
+    </block>
+  </block>
+
+  <block wx:else>
+    <view class="diary-view">
+      <text class="diary-view__eyebrow">今天，发生了</text>
+      <text class="diary-view__title">什么值得记下的？</text>
+      <scroll-view class="diary-view__body" scroll-y enhanced show-scrollbar="{{false}}">
+        <block wx:for="{{diaryParagraphs}}" wx:key="index"><text class="diary-view__paragraph">{{item}}</text></block>
+      </scroll-view>
+      <view class="diary-view__mood"><image src="/assets/icons/mood-{{song.moodKey}}.svg" mode="aspectFit" /><text>{{song.mood}}</text></view>
+    </view>
+  </block>
+
+  <song-adjust-panel visible="{{showAdjustPanel}}" tweaks="{{tweaks}}" instruments="{{instruments}}" current-instrument="{{currentInstrument}}" previewing="{{previewing}}" playable="{{playable}}" wave-bars="{{waveBars}}" bind:close="closeAdjustPanel" bind:change="changeTweak" bind:choose="chooseInstrument" bind:preview="togglePreview" bind:apply="applyTweak" />
+  <lyric-rewrite-panel visible="{{showRewritePanel}}" original="{{song.lyrics[currentLineIndex]}}" alternatives="{{lyricAlternatives}}" current-alternative="{{currentAlternative}}" bind:close="closeRewritePanel" bind:choose="chooseAlternative" bind:lock="lockOriginal" bind:edit="editAlternative" bind:apply="useAlternative" />
+</view>

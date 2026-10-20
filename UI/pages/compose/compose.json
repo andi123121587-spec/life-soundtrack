@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "page-title": "/UI/components/page-title/page-title",
+    "mood-selector": "/UI/components/mood-selector/mood-selector",
+    "bottom-nav": "/UI/components/bottom-nav/bottom-nav"
+  }
+}

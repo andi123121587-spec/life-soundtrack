@@ -1,0 +1,15 @@
+<view class="mood-grid {{compact ? 'mood-grid--compact' : ''}}">
+  <block wx:for="{{moods}}" wx:key="key">
+    <view
+      class="mood-card {{dark ? 'mood-card--dark' : ''}} {{value === item.key ? 'mood-card--active' : ''}}"
+      data-mood="{{item.key}}"
+      bindtap="chooseMood"
+      style="background: {{item.gradientStyle}};"
+    >
+      <text class="mood-emoji">{{item.emoji}}</text>
+      <text class="mood-name">{{item.name}}</text>
+      <text class="mood-tone">{{item.tone}}</text>
+      <text class="mood-helper">{{item.helper}}</text>
+    </view>
+  </block>
+</view>

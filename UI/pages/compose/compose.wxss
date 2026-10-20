@@ -1,0 +1,29 @@
+.compose-page { padding-left: 30rpx; padding-right: 30rpx; padding-bottom: calc(190rpx + env(safe-area-inset-bottom)); }
+.compose-title { margin: 34rpx 34rpx 0; display: flex; flex-direction: column; gap: 34rpx; color: #4e3524; }
+.compose-title__top { display: flex; align-items: center; justify-content: space-between; gap: 18rpx; }
+.compose-title__eyebrow { font-size: 34rpx; font-weight: 500; }
+.compose-title__main { font-size: 58rpx; line-height: 1.05; font-weight: 600; }
+.compose-title__quick { width: 116rpx; height: 58rpx; border-radius: 999rpx; display: grid; place-items: center; background: #c98659; color: #fef7eb; font-size: 26rpx; font-weight: 700; flex: none; }
+.compose-title__quick--disabled { opacity: .48; }
+
+.compose-editor { margin-top: 28rpx; padding: 46rpx 62rpx 32rpx; border-radius: 48rpx; background: #c98659; }
+.compose-editor__textarea { width: 100%; height: 420rpx; color: #fef7eb; font-size: 32rpx; line-height: 1.75; background: transparent; }
+.compose-editor__placeholder { color: rgba(254,247,235,.55); }
+.compose-editor__privacy { display: flex; align-items: center; gap: 18rpx; color: #fce0ad; font-size: 28rpx; }
+.compose-editor__switch { width: 72rpx; height: 38rpx; padding: 4rpx; border: 2rpx solid #966b1f; border-radius: 999rpx; background: #fce0ad; }
+.compose-editor__switch view { width: 28rpx; height: 28rpx; border-radius: 50%; background: #966b1f; transition: transform 160ms ease; }
+.compose-editor__switch--on view { transform: translateX(32rpx); }
+.compose-editor__line { height: 2rpx; margin-top: 26rpx; background: rgba(252,224,173,.9); }
+.compose-rule { margin: 28rpx 0 20rpx; }
+.compose-moods { display: flex; justify-content: space-between; gap: 10rpx; }
+.compose-pill { padding: 0 16rpx; gap: 8rpx; }
+.compose-pill__icon { width: 32rpx; height: 32rpx; }
+.compose-pill.pill--active .compose-pill__icon { filter: brightness(0) invert(1); }
+.compose-prompts { margin-top: 28rpx; }
+.compose-prompts__title { display: block; color: #c98659; font-size: 26rpx; font-weight: 600; }
+.compose-prompts__row { margin-top: 20rpx; display: flex; flex-wrap: wrap; gap: 14rpx; }
+.prompt-pill { min-width: 182rpx; }
+.compose-action-dock { position: fixed; z-index: 999; left: 0; right: 0; bottom: 0; padding: 22rpx 46rpx calc(22rpx + env(safe-area-inset-bottom)); background: #fef7eb; }
+.compose-action { height: 112rpx; line-height: 112rpx; border-radius: 999rpx; text-align: center; color: #fef7eb; background: #c98659; font-size: 36rpx; font-weight: 700; }
+.compose-action--disabled { opacity: .48; }
+.compose-privacy-note { display: block; margin-top: 14rpx; text-align: center; color: #9b765e; font-size: 20rpx; text-decoration: underline; }

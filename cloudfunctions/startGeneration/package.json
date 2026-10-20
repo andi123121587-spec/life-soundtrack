@@ -1,0 +1,9 @@
+{
+  "name": "start-generation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~3.0.1",
+    "tencentcloud-sdk-nodejs-scf": "^4.1.106"
+  }
+}

@@ -1,5 +1,7 @@
 # Public architecture snapshot
 
+Related reading: [`PRODUCT_AND_FLOW.md`](PRODUCT_AND_FLOW.md) · [`IMPLEMENTATION_MAP.md`](IMPLEMENTATION_MAP.md) · [`RUN_AND_VERIFICATION.md`](RUN_AND_VERIFICATION.md)
+
 ## Product boundary
 
 Life Soundtrack turns a user-provided mood/event note into lyrics and music that the user can judge, adjust, save privately, or discard. Replaying old content and weekly recap are secondary lifecycle ideas, not prerequisites for the core creation task.

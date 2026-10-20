@@ -12,6 +12,15 @@
 - 代码阅读入口：`UI/`、`Features/`、`Core/`、`Services/`、`cloudfunctions/`、`Tests/`。
 - 设计依据与假设：[`Docs/DESIGN_BASIS.md`](Docs/DESIGN_BASIS.md)。
 
+## 招聘者阅读路径
+
+如果只看五分钟：先看下面的产品任务，再看决策到代码的映射，最后按运行指南执行本地检查。
+
+1. [`Docs/PRODUCT_AND_FLOW.md`](Docs/PRODUCT_AND_FLOW.md)：产品问题、核心任务、状态边界和 CREATE 证明。
+2. [`Docs/IMPLEMENTATION_MAP.md`](Docs/IMPLEMENTATION_MAP.md)：关键设计决定如何落到页面、领域逻辑、服务和云函数。
+3. [`Docs/RUN_AND_VERIFICATION.md`](Docs/RUN_AND_VERIFICATION.md)：本地 Demo、微信开发者工具、云函数配置和验证清单。
+4. [`Docs/ARCHITECTURE.md`](Docs/ARCHITECTURE.md)：分层结构与一次生成任务的数据流。
+
 ## 结构
 
 ```text
@@ -39,12 +48,14 @@ Docs/           公开架构、设计依据与验证边界说明
 
 ### 只跑本地逻辑检查
 
-需要 Node.js：
+需要 Node.js。仓库的 `package.json` 已提供与下面命令等价的脚本：
 
 ```bash
 npm test
 npm run check
 ```
+
+预期结果：14 个领域/服务测试通过，静态检查报告 `Project checks passed`。这只证明本地代码层检查通过，不代表云端或真机闭环完成。
 
 ### 在微信开发者工具中打开
 
@@ -57,12 +68,22 @@ npm run check
 
 ## 当前验证边界
 
-已验证：源码副本可进行 Node 语法/JSON/本地模块引用检查；领域测试覆盖状态迁移、歌曲操作、生成任务和云调用契约。
+已验证：源码副本可进行 Node 语法/JSON/本地模块引用检查；领域测试覆盖状态迁移、歌曲操作、生成任务和云调用契约；公开包的相对链接、资产引用和配置占位符已检查。
+
+### 本次公开包整理的最小验证摘要
+
+2026-10-20，在本地 Codex 工作区的 macOS 环境使用工作区自带 Node.js 直接执行：
+
+- `node --test Tests/*.test.js`：14/14 通过。
+- `node scripts/check-project.js`：通过，报告 JavaScript 语法和 JSON 检查通过。
+- 公开包检查：141 个文件与 manifest 字节数/SHA-256 一致；README/Docs 内 11 个本地链接均可达；R01 与 R02 的非 Markdown 文件差异为 0。
+
+当前 shell 未提供 `npm` 命令，因此没有把 `npm test` 当作已执行结果；已核对 `package.json` 中的脚本与上面的直接 Node 命令一致。以上是公开包整理时的本地检查，不是微信开发者工具、真机、云端或目标用户验证。
 
 未在本公开包中宣称：真实云端部署成功、真实音频生成和播放、微信真机端到端闭环、目标用户测试、生产发布或审核通过。当前工程记录仍将这些事项标为待环境或真机验证。
 
 ## 版本与来源
 
-公开包版本：`life-soundtrack_CREATE_2026-10-19_R01`。
+公开包版本：`life-soundtrack_CREATE_2026-10-20_R02`。
 
-这是从本地 Life Soundtrack 小程序工程精选出的公开副本；研究原件、访谈、个人资料、案例 HTML、含个人信息的截图与本机工程历史不在仓库中。无单独第三方许可证文件随源工程提供，因此本包不新增或推断授权声明；使用者应在再分发前自行核对素材来源与授权。
+这是从本地 Life Soundtrack 小程序工程精选出的公开副本；研究原件、访谈、个人资料、案例 HTML、含个人信息的截图与本机工程历史不在仓库中。R01 公开候选保留为历史基线，R02 只增加招聘者导读和验证文档，不改变源码功能。无单独第三方许可证文件随源工程提供，因此本包不新增或推断授权声明；使用者应在再分发前自行核对素材来源与授权。
